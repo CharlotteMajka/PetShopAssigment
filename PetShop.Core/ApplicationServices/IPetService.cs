@@ -14,6 +14,12 @@ namespace PetShop.Core.ApplicationServices
 
         Pet DeletePet(int id);
 
+        Pet UpdatePet(int idToupdate, string name, string type, DateTime dob, string color, string previousOwner, double price);
+
+        IEnumerable<Pet> SortPetsByPrice();
+
+        IEnumerable<Pet> Get5ChepestPets();
+
 
     }
 }

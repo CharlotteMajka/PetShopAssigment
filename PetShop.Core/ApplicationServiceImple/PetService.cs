@@ -3,6 +3,7 @@ using PetShop.Core.DomainServices;
 using PetShop.Core.Entities;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace PetShop.Core.ApplicationServiceImple
@@ -45,5 +46,44 @@ namespace PetShop.Core.ApplicationServiceImple
         {   
             return petRepository.ReadPets();
         }
+
+        
+
+        public Pet UpdatePet(int idToupdate, string name, string type, DateTime dob, string color, string previousOwner, double price)
+        {
+            Pet upDatePet = petRepository.GetPetByID(idToupdate);
+
+            upDatePet.Name = name;
+            upDatePet.Type = type;
+            upDatePet.Dob = dob;
+            upDatePet.Color = color;
+            upDatePet.PreviousOwner = previousOwner;
+            upDatePet.Price = price;
+
+            return upDatePet;
+        }
+
+        public IEnumerable<Pet> SortPetsByPrice()
+        {
+           var SortPetsByPrice = petRepository.ReadPets().OrderByDescending(s => s.Price);
+
+            return SortPetsByPrice;
+
+
+        }
+
+
+        public IEnumerable<Pet> Get5ChepestPets()
+        {
+            var Get5ChepestPets = petRepository.ReadPets().OrderBy(s => s.Price);
+
+            return Get5ChepestPets;
+
+
+        }
+
+
+
+
     }
 }

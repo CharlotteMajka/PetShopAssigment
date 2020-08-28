@@ -49,15 +49,19 @@ namespace PetShop.UI
                         break;
                     case 4:
                         //Console.WriteLine("Update Car");
+                        UpdatePet();
                         break;
                     case 5:
                         //ShowCheapestPets();
+                        Get5ChepestPets(); 
                         break;
                     case 6:
                         //Search Pets by type 
                         break;
                     case 7:
                         //Sort Pets by Price
+                        SortPetsByPrice();
+                        break;
                     default:
                         break;
                 }
@@ -71,13 +75,15 @@ namespace PetShop.UI
         private void DeletePet()
         {
 
-            int IdToDelete;
+            //int IdToDelete;
             WriteLine("Please type the ID for the Pet you whant to Delete:");
 
-            while( !int.TryParse(Console.ReadLine(), out IdToDelete))
+           int IdToDelete =  GetID();
+
+            /*while( !int.TryParse(Console.ReadLine(), out IdToDelete))
             {
                 WriteLine("Please insert a Valid ID number");
-            }
+            }*/
             /*Pet PetFound = null;
 
             foreach (var item in PetService.getPets())
@@ -135,7 +141,7 @@ namespace PetShop.UI
 
         public void ListAllPets(List<Pet> pets) 
         {
-            WriteLine("List of Pets :");
+            WriteLine("\nList of Pets :");
             if (pets.Count > 0)
             {
                 foreach (var item in pets)
@@ -167,8 +173,84 @@ namespace PetShop.UI
 
             var theNewPet = PetService.AddNewPet(name, type, Dob,  Color, previousOwner, price);
 
-            Console.WriteLine($" \nnew Pet Added!! :\nID:{theNewPet.Id} Name: {theNewPet.Name}\n");
+            Console.WriteLine($" \nnew Pet Added!! :\nID:{theNewPet.Id} \nName: {theNewPet.Name}\n");
 
+
+        }
+
+        public void UpdatePet()
+        {
+
+            
+            WriteLine("Please type the ID for the Pet you want to Update:");
+
+            /*while (!int.TryParse(Console.ReadLine(), out IdToDelete))
+            {
+                WriteLine("Please insert a Valid ID number");
+            }*/
+
+            int IdToupdate = GetID();
+
+            var name = AskQuestion("\nWrite The new name of the Pet:");
+            var type = AskQuestion("Write The new Type of the Pet:");
+            DateTime Dob;
+            var Color = AskQuestion("Write The new color of the Pet:");
+            var previousOwner = AskQuestion("Write The previus owner of the Pet:");
+
+            double price;
+
+            DateTime.TryParse(AskQuestion("Write The date of birth(DoB) of the Pet:"), out Dob);
+
+            Double.TryParse(AskQuestion("Enter the Price for the Pet: "), out price);
+
+            var thePetUpdate = PetService.UpdatePet(IdToupdate, name, type, Dob, Color, previousOwner, price);
+
+            Console.WriteLine($" \nnew Pet Updatet :\nID:{thePetUpdate.Id} \nName: {thePetUpdate.Name}\n");
+
+
+
+        }
+
+        public int GetID()
+        {
+
+            int IdToGet;
+           
+            while (!int.TryParse(Console.ReadLine(), out IdToGet))
+            {
+                WriteLine("Please insert a Valid ID number");
+            }
+            return IdToGet;
+        }
+
+
+        public void SortPetsByPrice()
+        {
+            WriteLine("List af Pets Sorted by Price Desc\n");
+            foreach (var item in PetService.SortPetsByPrice())
+            {
+                WriteLine($" ID: {item.Id}\n Name: {item.Name}\n DoB: {item.Dob.ToShortDateString()}\n Price: {item.Price}\n ");
+            }
+
+
+        }
+
+        public void Get5ChepestPets()
+        {
+            WriteLine("Here is the 5 Chepest pets:\n");
+
+            int count = 0;
+    
+                foreach (var item in PetService.Get5ChepestPets())
+                {   WriteLine($" ID: {item.Id}\n Name: {item.Name}\n DoB: {item.Dob.ToShortDateString()}\n Price: {item.Price}\n ");
+                    count++;
+                     if (count > 4)
+                    {
+                    break;
+                    }
+                
+                } 
+            
 
         }
 
