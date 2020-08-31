@@ -53,12 +53,30 @@ namespace PetShop.Core.ApplicationServiceImple
         {
             Pet upDatePet = petRepository.GetPetByID(idToupdate);
 
-            upDatePet.Name = name;
-            upDatePet.Type = type;
-            upDatePet.Dob = dob;
-            upDatePet.Color = color;
-            upDatePet.PreviousOwner = previousOwner;
-            upDatePet.Price = price;
+            if (!name.Trim().Contains(""))
+            {
+                upDatePet.Name = name;
+            }
+            if (!type.Trim().Contains(""))
+            {
+                upDatePet.Type = type;
+            }
+            if (!dob.ToString().Trim().Contains(""))
+            {
+                upDatePet.Dob = dob;
+            }
+            if (!color.Trim().Contains(""))
+            {
+                upDatePet.Color = color;
+            }
+            if (!previousOwner.Trim().Contains(""))
+            {
+                upDatePet.PreviousOwner = previousOwner;
+            }
+            if (!price.ToString().Trim().Contains(""))//.Trim().Contains(""))
+            {
+                upDatePet.Price = price;
+            }
 
             return upDatePet;
         }
