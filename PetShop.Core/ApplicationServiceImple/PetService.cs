@@ -82,8 +82,12 @@ namespace PetShop.Core.ApplicationServiceImple
 
         }
 
+        public IEnumerable<Pet> SearchPetByType(string stringToLookFore)
+        {
+
+            return petRepository.ReadPets().FindAll(s => s.Type.ToLower().Contains(stringToLookFore.ToLower()));//.Equals(stringToLookFore.Trim()));
 
 
-
+        }
     }
 }

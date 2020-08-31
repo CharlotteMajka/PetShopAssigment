@@ -19,7 +19,6 @@ namespace PetShop.Core.ApplicationServices
         IEnumerable<Pet> SortPetsByPrice();
 
         IEnumerable<Pet> Get5ChepestPets();
-
-
+        IEnumerable<Pet> SearchPetByType(string stringToLookFore);
     }
 }

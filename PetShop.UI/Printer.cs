@@ -57,6 +57,7 @@ namespace PetShop.UI
                         break;
                     case 6:
                         //Search Pets by type 
+                        SearchPetByType();
                         break;
                     case 7:
                         //Sort Pets by Price
@@ -70,6 +71,22 @@ namespace PetShop.UI
             Console.WriteLine("Bye bye!");
 
             Console.ReadLine();
+        }
+
+        private void SearchPetByType()
+        {
+            
+            String stringToLookFore = AskQuestion("Enter which type of pet your are looking for:\n ");
+
+            List<Pet> pets = (List<Pet>)PetService.SearchPetByType(stringToLookFore.Trim());
+
+            foreach (var item in pets)
+            {
+                WriteLine($" ID: {item.Id}\n Name: {item.Name}\n DoB: {item.Dob.ToShortDateString()}\n Price: {item.Price}\n Type: {item.Type}\n ");
+
+            }
+
+
         }
 
         private void DeletePet()
@@ -146,7 +163,7 @@ namespace PetShop.UI
             {
                 foreach (var item in pets)
                 {
-                    WriteLine($" ID: {item.Id}\n Name: {item.Name}\n DoB: {item.Dob.ToShortDateString()}\n Price: {item.Price}\n ");
+                    WriteLine($" ID: {item.Id}\n Name: {item.Name}\n DoB: {item.Dob.ToShortDateString()}\n Price: {item.Price}\n Type: {item.Type}\n ");
 
                 }
             }
