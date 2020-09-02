@@ -53,11 +53,13 @@ namespace PetShop.Core.ApplicationServiceImple
         {
             Pet upDatePet = petRepository.GetPetByID(idToupdate);
 
-            if (!name.Trim().Contains(""))
+
+
+            if (name.Trim().Length < 2)
             {
-                upDatePet.Name = name;
+                Console.WriteLine("Name must have minimum 2 letters in it");
             }
-            if (!type.Trim().Contains(""))
+           /* if (!type.Trim().Contains(""))
             {
                 upDatePet.Type = type;
             }
@@ -73,12 +75,12 @@ namespace PetShop.Core.ApplicationServiceImple
             {
                 upDatePet.PreviousOwner = previousOwner;
             }
-            if (!price.ToString().Trim().Contains(""))//.Trim().Contains(""))
+            if (!price.ToString().Trim().)
             {
                 upDatePet.Price = price;
-            }
+            }*/
 
-            return upDatePet;
+            return petRepository.UpdatePet(new Pet { Id = idToupdate, Name = name, Type = type, Dob = dob, Color = color, PreviousOwner = previousOwner, Price = price });
         }
 
         public IEnumerable<Pet> SortPetsByPrice()

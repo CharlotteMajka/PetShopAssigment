@@ -13,5 +13,6 @@ namespace PetShop.Core.DomainServices
 
         void DeletePet(Pet petToDelete);
         Pet GetPetByID(int id);
+        Pet UpdatePet(Pet pet);
     }
 }

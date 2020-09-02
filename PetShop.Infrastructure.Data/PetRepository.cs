@@ -57,5 +57,26 @@ namespace PetShop.Infrastructure.Data
 
             return result;
         }
+
+        public Pet UpdatePet(Pet petUpdate)
+        {
+            var petFromMock = this.GetPetByID(petUpdate.Id);   
+            
+            if(petFromMock != null) 
+            
+            {
+                petFromMock.Name = petUpdate.Name;
+                petFromMock.Type = petUpdate.Type;
+                petFromMock.Color = petUpdate.Color;
+                petFromMock.Dob = petUpdate.Dob;
+                petFromMock.SoldDate = petUpdate.SoldDate;
+                petFromMock.PreviousOwner = petUpdate.PreviousOwner;
+                petFromMock.Price = petUpdate.Price;
+
+                return petFromMock;
+            }
+            return null;
+
+        }
     }
 }

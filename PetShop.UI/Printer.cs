@@ -201,10 +201,7 @@ namespace PetShop.UI
             
             WriteLine("Please type the ID for the Pet you want to Update:");
 
-            /*while (!int.TryParse(Console.ReadLine(), out IdToDelete))
-            {
-                WriteLine("Please insert a Valid ID number");
-            }*/
+          
 
             int IdToupdate = GetID();
 
